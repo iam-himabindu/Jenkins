@@ -1,0 +1,13 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('File-Creation') {
+            steps {
+                sh 'touch File-1'
+                sh 'touch File-2'
+                sh 'touch File-3'
+            }
+        }
+    }
+}
