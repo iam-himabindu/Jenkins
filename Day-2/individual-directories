@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone') {
+            steps {
+                git branch: 'main', url: 'https://github.com/iam-himabindu/Jenkins.git'
+            }
+        }
+
+        stage('Init') {
+            steps {
+                dir('Day-2/Basic-Files') {
+                    sh 'terraform init'
+                }
+            }
+        }
+        stage('Plan') {
+            steps {
+                dir('Day-2/Basic-Files') {
+                    sh 'terraform plan'
+                }
+            }
+        }
+        stage('Apply') {
+            steps {
+                dir('Day-2/Basic-Files') {
+                    sh 'terraform apply --auto-approve'
+                }
+            }
+        }
+    }
+}
